@@ -35,7 +35,7 @@ const Home = () => {
             onClick={() => setAddChatModalOpen(true)}
             className="font-bold"
           >
-            {chatId ? '' : 'Новый чат'}
+            Новый чат
           </button>
           <button onClick={() => setLogoutModalOpen(true)}>
             <img src={logoutIcon} alt="logoutIcon" className="w-6 h-6" />
