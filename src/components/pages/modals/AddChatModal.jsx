@@ -83,7 +83,7 @@ const AddChatModal = ({ setModalIsOpen }) => {
         </div>
 
         <div className="flex justify-between gap-4 mt-5 sm:justify-end ">
-          <Button_1 setModalIsOpen={setModalIsOpen} title="Отмена" />
+          <Button_1 setModalIsOpen={() => setModalIsOpen(false)} title="Отмена" />
           <input
             type="submit"
             value={CREATE_CHAT}
