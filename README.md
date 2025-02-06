@@ -1,8 +1,28 @@
-# React + Vite
+# Vite Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple whatsapp messaging app powered by Vite.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Ensure you have the following installed on your local machine:
+
+- **Node.js** (v14 or later)
+- **npm** (comes with Node.js)
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Aghasy8888/whats-app-messaging.git
+   cd whats-app-messaging
+
+2. Using npm:
+   npm install
+
+3. Run the development server:
+   npm run dev
+
+4. Run the build command:
+   npm run build
+
+
