@@ -1,24 +1,27 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { receiveMessages } from '../redux/features/message/messageService';
+import { receiveMessages } from '../redux/features/message/messageService';
 import {
   selectApiTokenInstance,
   selectIdInstance,
 } from '../redux/features/auth/authSlice';
+import { selectChatId } from '../redux/features/message/messageSlice';
 
 const useReceiveNotifications = () => {
+  const dispatch = useDispatch();
   const idInstance = useSelector(selectIdInstance);
   const apiTokenInstance = useSelector(selectApiTokenInstance);
-
-  const dispatch = useDispatch();
+  const chatId = useSelector(selectChatId);
 
   useEffect(() => {
-    // const interval = setInterval(() => {
-    //   dispatch(receiveMessages({ idInstance, apiTokenInstance }));
-    // }, 5000);
+    if (!chatId) return;
 
-    // return () => clearInterval(interval);
-  }, [dispatch, idInstance, apiTokenInstance]);
+    const interval = setInterval(() => {
+      dispatch(receiveMessages({ idInstance, apiTokenInstance, chatId }));
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [dispatch, idInstance, apiTokenInstance, chatId]);
 };
 
 export default useReceiveNotifications;

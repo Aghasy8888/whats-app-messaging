@@ -8,8 +8,6 @@ const useSetUserInfo = () => {
   const idInstance = getItemFromStorage('idInstance');
   const apiTokenInstance = getItemFromStorage('apiTokenInstance');
 
-  console.log('idInstance', idInstance);
-
   useEffect(() => {
     dispatch(setUserInfo({ idInstance, apiTokenInstance }));
   }, []);

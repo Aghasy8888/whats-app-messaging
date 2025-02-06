@@ -22,7 +22,7 @@ const MessageForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(!message) return;
+    if (!message) return;
     dispatch(
       sendMessage({
         chatId,
@@ -31,7 +31,7 @@ const MessageForm = () => {
         message,
       })
     );
-    
+
     setMessage('');
   };
 

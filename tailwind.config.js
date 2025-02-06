@@ -24,6 +24,7 @@ export default {
         whiteV1: 'rgb(209, 215, 219)',
         whiteV2: '#938481',
         modalBackground: 'rgba(46, 49, 46, 0.5)',
+        incomingBackground: '#202c33',
         green: 'rgb(0, 168, 132, .8)',
         greenV_2: 'rgb(0, 168, 132, 1)',
         greenV_3: 'rgb(0, 168, 132)',

@@ -5,3 +5,6 @@ export const YOUR_MESSAGES_PROTECTED = 'Ваши личные сообщения
 export const CREATE_CHAT = 'Создать чат';
 export const ENTER_PHONE_NUMBER =
   'Введите номер телефона человека, с которым хотите пообщаться.';
+
+  //classes
+  export const buttonClass = 'text-[14px] rounded-3xl font-medium py-2 px-6';

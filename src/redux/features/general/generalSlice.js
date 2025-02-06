@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { login } from '../auth/userService';
-import { openChat } from '../message/messageService';
+import { openChat, receiveMessages } from '../message/messageService';
 
 const initialState = {
   test: '',
@@ -12,21 +12,23 @@ const generalSlice = createSlice({
   name: 'general',
   initialState,
   reducers: {
-    setTest(state, { payload }) {
-      state.test = payload;
+    setSuccessMessage(state, { payload }) {
+      state.errorMessage = null;
+      state.successMessage = payload;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state) => {
         state.errorMessage = null;
-        state.successMessage = 'Logged in successfully';
+        state.successMessage = 'Вход выполнен успешно';
       })
       .addMatcher(
         (action) =>
           [
             login.rejected.type,
             openChat.rejected.type,
+            receiveMessages.rejected.type,
           ].includes(action.type),
         (state, { payload: { errorMessage } }) => {
           state.loading = false;
@@ -37,7 +39,7 @@ const generalSlice = createSlice({
   },
 });
 
-export const { setTest } = generalSlice.actions;
+export const { setSuccessMessage } = generalSlice.actions;
 
 export const selectTest = (state) => state.generalReducer.test;
 export const selectErrorMessage = (state) => state.generalReducer.errorMessage;

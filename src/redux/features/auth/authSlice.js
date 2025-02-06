@@ -18,9 +18,7 @@ const authSlice = createSlice({
     setUserAuth(state, { payload }) {
       state.isAuthenticated = payload;
     },
-    setUserInfo(state, { payload: { apiTokenInstance, idInstance } }) {
-      console.log('apiTokenInstance', apiTokenInstance);
-      
+    setUserInfo(state, { payload: { apiTokenInstance, idInstance } }) {      
       state.apiTokenInstance = apiTokenInstance;
       state.idInstance = idInstance;
     },

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { openChat } from './messageService';
+import { openChat, receiveMessages, sendMessage } from './messageService';
 
 const initialState = {
   loading: false,
@@ -17,6 +17,41 @@ const messageSlice = createSlice({
 
         state.messages = messages;
         state.chatId = chatId;
+        state.loading = false;
+      })
+      .addCase(sendMessage.fulfilled, (state, { payload }) => {
+        const currentTimestamp = Math.floor(Date.now() / 1000);
+
+        const message = {
+          ...payload,          
+          timestamp: currentTimestamp,
+        };
+
+        state.messages.push(message);
+        state.loading = false;
+      })
+      .addCase(receiveMessages.fulfilled, (state, { payload }) => {
+        if (!payload) return;
+        const { messageReceived } = payload;
+
+        if (
+          !messageReceived.senderData ||
+          messageReceived.senderData.chatId !== state.chatId
+        ) {
+          return;
+        }
+
+        const message = {
+          ...messageReceived.senderData,
+          ...messageReceived,
+        };
+        message.textMessage =
+          messageReceived.messageData.textMessageData.textMessage;
+        message.typeMessage =
+          messageReceived.messageData.textMessageData.typeMessage;
+        message.senderId = true;
+
+        state.messages.push(message);
         state.loading = false;
       })
       .addMatcher(

@@ -6,7 +6,6 @@ export const login = createAsyncThunk(
   async ({ data }, { rejectWithValue }) => {
     try {
       const res = await loginRequest(data);
-        console.log('res', res);
         
       return { res, data };
     } catch (error) {

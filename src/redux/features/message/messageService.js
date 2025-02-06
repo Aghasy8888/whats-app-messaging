@@ -28,8 +28,6 @@ export const openChat = createAsyncThunk(
         { chatId }
       );
 
-      console.log('historyMessages', historyMessages);
-
       return { chatId, messages: historyMessages };
     } catch (error) {
       return rejectWithValue({ errorMessage: error.message });
@@ -53,9 +51,7 @@ export const sendMessage = createAsyncThunk(
         }
       );
 
-      console.log('response', response);
-
-      return { chatId, idMessage: response.idMessage };
+      return { chatId, textMessage: message, idMessage: response.idMessage };
     } catch (error) {
       return rejectWithValue({ errorMessage: error.message });
     }
@@ -64,18 +60,27 @@ export const sendMessage = createAsyncThunk(
 
 export const receiveMessages = createAsyncThunk(
   'message/receiveMessages',
-  async (
-    { idInstance, apiTokenInstance },
-    { rejectWithValue }
-  ) => {
+  async ({ idInstance, apiTokenInstance, chatId }, { rejectWithValue }) => {
     try {
       const response = await request(
         `${apiUrl}/waInstance${idInstance}/receiveNotification/${apiTokenInstance}`
       );
 
-      console.log('response', response);
+      if (!response) return null;
 
-      return { response };
+      const { receiptId, body } = response;
+      const { senderData } = body;
+
+      if (!senderData || senderData.chatId !== chatId) {
+        return null;
+      }
+
+      await request(
+        `${apiUrl}/waInstance${idInstance}/deleteNotification/${apiTokenInstance}/${receiptId}`,
+        'DELETE'
+      );
+
+      return { messageReceived: body };
     } catch (error) {
       return rejectWithValue({ errorMessage: error.message });
     }
