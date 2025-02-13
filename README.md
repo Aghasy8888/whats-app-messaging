@@ -27,3 +27,13 @@ Ensure you have the following installed on your local machine:
 
 ## Deployed Website
 You can access the deployed version of the app by clicking the Link: https://whats-app-messaging.vercel.app/
+
+## Login Requirements
+For login, you need:
+
+Id Instance: Your unique instance ID.
+API Token Instance: Your unique API token.
+
+You can obtain these from the Green API website. For more details, visit the API website.
+
+Green API website: https://green-api.com/
