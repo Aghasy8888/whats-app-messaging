@@ -25,4 +25,5 @@ Ensure you have the following installed on your local machine:
 4. Run the build command:
    npm run build
 
-
+## Deployed Website
+You can access the deployed version of the app by clicking the Link: https://whats-app-messaging.vercel.app/
